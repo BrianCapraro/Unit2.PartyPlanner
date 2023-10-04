@@ -3,31 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Party Planning</title>
     <link rel="stylesheet" href="index.css" />
-    <script src="index.js"></script>
   </head>
   <body>
     <h1>Party Planning</h1>
-    <form id="addParty">
+    <form id="addEventForm">
       <label>
-        Name
-        <input type="text" name="name" />
+        Event Name:
+        <input type="text" id="nameInput" name="name" required />
       </label>
       <label>
-        Date
-        <input type="text" date="date" />
+        Date:
+        <input type="text" id="dateInput" name="date" required />
       </label>
       <label>
-        Location
-        <input type="text" location="location" />
+        Location:
+        <input type="text" id="locationInput" name="location" required />
       </label>
       <label>
-        Description
-        <input type="text" description="description" />
+        Description:
+        <input type="text" id="descriptionInput" name="description" required />
       </label>
-      <button>Add Party</button>
+      <button type="submit">Add Party</button>
     </form>
-    <ul id="parties"></ul>
+    <ul id="eventsList"></ul>
+    <script src="index.js"></script>
   </body>
 </html>

@@ -1,11 +1,11 @@
-#parties {
+/* #events {
     display: flex;
     flex-flow: row wrap;
     list-style: none;
     padding: 0;
 }
   
-.party {
+.event {
     flex: 1 1 300px;
     max-height: 200px;
     margin: 10px;
@@ -16,4 +16,4 @@
   
 form {
     display:inline-block;
-}
+} */
