@@ -19,7 +19,7 @@ async function getEvents() {
   try {
     const response = await fetch(API_URL);
     const json = await response.json();
-    state.events = json;
+    state.events = json.data;
   } catch (error) {
     console.log(error);
   }
@@ -36,7 +36,7 @@ function renderEvents() {
     <h2>${event.name}<h2>
     <h2>${event.date}<h2>
     <h2>${event.location}<h2>
-    <p>${artist.description}<p>
+    <p>${event.description}<p>
     `;
 
     const deleteButton = document.createElement("button");
@@ -51,8 +51,6 @@ function renderEvents() {
 console.log(eventsList);
 
 async function createEvent(name, date, location, description) {
-  event.preventDefault();
-
   try {
     const response = await fetch(API_URL, {
       method: "POST",
@@ -64,13 +62,13 @@ async function createEvent(name, date, location, description) {
         description: addEventForm.description.value,
       }),
     });
-
     if (!response.ok) {
-      throw new Error("Failed to create new event.");
+      throw new Error("Failed to create an event");
     }
+
     render();
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 }
 
@@ -82,7 +80,22 @@ async function addEvent(event) {
     addEventForm.location.value,
     addEventForm.description.value
   );
-  addEventForm.title.value = "";
-  addEventForm.image_url.value = "";
-  addEventForm.instructions.value = "";
+  addEventForm.name.value = "";
+  addEventForm.date.value = "";
+  addEventForm.location.value = "";
+  addEventForm.description.value = "";
+}
+
+async function deleteEvent(id) {
+  try {
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      throw new Error("The event you've selected could not be deleted");
+    }
+    render();
+  } catch (error) {
+    console.log(error);
+  }
 }
